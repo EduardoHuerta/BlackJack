@@ -5,6 +5,8 @@ import com.game.Baraja.Carta;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
+
 
 //prueba de git
 
@@ -22,10 +24,23 @@ public class BlackJack {
 
         // TODO: 9/8/2019 max number of players 10 incluyendo croupier
         // TODO: 9/8/2019 si tiene 5 cartas ganas
-        jugadoresEnJuego.add(new Jugador("Eduardo"));
-        jugadoresEnJuego.add(new Jugador("Daniel"));
-        jugadoresEnJuego.add(new Jugador("Victor"));
-        System.out.println();
+        //jugadoresEnJuego.add(new Jugador("Eduardo"));
+        //jugadoresEnJuego.add(new Jugador("Daniel"));
+        //jugadoresEnJuego.add(new Jugador("Victor"));
+        //System.out.println();
+
+        Scanner entradaUsuario = new Scanner(System.in);
+
+        System.out.println("Ingrese numero de jugadores");
+        int numeroDeJugadores = entradaUsuario.nextInt();
+
+        System.out.println("ingresaste " + numeroDeJugadores + " juadores");
+
+        for (int i = 0; i < numeroDeJugadores; i++) {
+        String nombre = entradaUsuario.nextLine();3
+        jugadoresEnJuego.add(new Jugador(nombre));
+            System.out.println();
+        }
 
         gameLoop();
     }
