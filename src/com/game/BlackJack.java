@@ -8,7 +8,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 
-//prueba de git
+// TODO: 9/9/2019 poner colores 
 
 public class BlackJack {
     private static ArrayList<Jugador> jugadoresEnJuego;
