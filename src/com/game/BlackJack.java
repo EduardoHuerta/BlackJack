@@ -27,32 +27,30 @@ public class BlackJack {
         //System.out.println();
 
         Scanner entradaUsuario = new Scanner(System.in);
-        int numeroDeJugadores;
-        while(true) {
-              System.out.println("Ingrese numero de jugadores: ");
-              try {
-                  numeroDeJugadores = entradaUsuario.nextInt();
-              }catch (Exception e){
-                  System.out.println("Debes ingresar un solo numeros. Intente de nuevo.");
-                  entradaUsuario.nextLine();
-                  continue;
-              }
-             System.out.println("Haz ingresado " + numeroDeJugadores + " jugadores");
+        int numeroDeJugadores = 0;
+
+         do{
+            System.out.println("Ingrese numero de jugadores: ");
+            try { numeroDeJugadores = entradaUsuario.nextInt(); }
+            catch (Exception e) {
+                numeroDeJugadores = 0;
+                System.out.println("Debes ingresar solo numeros. Intente de nuevo.");
+                continue;
+            }
+        } while(numeroDeJugadores == 0);
+
+         numeroDeJugadores = (numeroDeJugadores > 4 || numeroDeJugadores < 0 )? 4 : numeroDeJugadores;
+
+        System.out.println("Haz ingresado " + numeroDeJugadores + " jugadores");
+
              for (int i = 0; i < numeroDeJugadores; i++) {
+                 System.out.println("Iteracion " + (i + 1) + " de " + numeroDeJugadores);
                  String nombre = entradaUsuario.nextLine();
                  jugadoresEnJuego.add(new Jugador(nombre));
                  System.out.println();
-                 if (numeroDeJugadores > 0 || numeroDeJugadores <= 4){
-                     break;
-                 }else {
-                     System.out.println("Solo se permiten de 1 a 4 jugadores.");
-                 }
              }
 
              gameLoop();
-             break;
-        }
-
     }
 
     private static void gameLoop() {
@@ -200,6 +198,5 @@ public class BlackJack {
                 jugador.pedirCarta();
             }
         } else jugador.setAccion(JugadorAccion.noTomarCarta);
-        ;
     }
 }
