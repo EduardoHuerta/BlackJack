@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-
-// TODO: 9/9/2019 poner colores 
-
 public class BlackJack {
     private static ArrayList<Jugador> jugadoresEnJuego;
     public static boolean juegoTerminado;
@@ -30,19 +27,26 @@ public class BlackJack {
         //System.out.println();
 
         Scanner entradaUsuario = new Scanner(System.in);
-
-        System.out.println("Ingrese numero de jugadores");
-        int numeroDeJugadores = entradaUsuario.nextInt();
-
-        System.out.println("ingresaste " + numeroDeJugadores + " juadores");
-
-        for (int i = 0; i < numeroDeJugadores; i++) {
-        String nombre = entradaUsuario.nextLine();3
-        jugadoresEnJuego.add(new Jugador(nombre));
-            System.out.println();
+        int numeroDeJugadores;
+        while(true) {
+              System.out.println("Ingrese numero de jugadores: ");
+              try {
+                  numeroDeJugadores = entradaUsuario.nextInt();
+              }catch (Exception e){
+                  System.out.println("Debes ingresar un solo numeros. Intente de nuevo.");
+                  entradaUsuario.nextLine();
+                  continue;
+              }
+             System.out.println("Haz ingresado " + numeroDeJugadores + " jugadores");
+             for (int i = 0; i < numeroDeJugadores; i++) {
+                String nombre = entradaUsuario.nextLine();
+                jugadoresEnJuego.add(new Jugador(nombre));
+                System.out.println();
+             }
+            gameLoop();
+             break;
         }
 
-        gameLoop();
     }
 
     private static void gameLoop() {
@@ -62,7 +66,8 @@ public class BlackJack {
             revisarCartasDelJugador(croupier);
             System.out.println();
 
-            if (croupier.getEstado() != JugadorEstado.jugar) break;
+            if (croupier.getEstado() != JugadorEstado.jugar)
+                break;
 
             for (int i = 0; i < jugadoresEnJuego.size(); i++) {
                 Jugador jugador = jugadoresEnJuego.get(i);
@@ -149,7 +154,8 @@ public class BlackJack {
         ArrayList<Carta> jokers = new ArrayList<Carta>();
 
         for (Carta carta : mano) {
-            //Revisa si la carta es un joker, si lo es, lo guarda en la lista de jokers para procesar si su puntaje vale 1 u 11 al final de todas las cartas
+            //Revisa si la carta es un joker, si lo es, lo guarda en la lista de jokers para procesar
+            // si su puntaje vale 1 u 11 al final de todas las cartas
             if (carta.getRango().getValor() == 1) jokers.add(carta);
             else if (carta.getBocaAbajo()) { //Revisa si la carta está boca abajo
                 numeroDeCartasOcultas++; //Cuenta una carta boca abajo

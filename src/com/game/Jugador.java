@@ -30,7 +30,7 @@ public class Jugador {
         Carta carta = BarajaInglesa54.getBarajaInglesa54().tomarCartaSuperior();
         carta.voltear();
         mano.add(carta);
-        System.out.println(this + " pidió una carta");
+        System.out.println(this  + " pidió una carta");
     }
 
     public ArrayList<Carta> getMano() { return mano; }
@@ -79,5 +79,4 @@ public class Jugador {
     public String toString() {
         return "Jugador " + nombre;
     }
-
 }
