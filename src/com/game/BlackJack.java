@@ -39,11 +39,17 @@ public class BlackJack {
               }
              System.out.println("Haz ingresado " + numeroDeJugadores + " jugadores");
              for (int i = 0; i < numeroDeJugadores; i++) {
-                String nombre = entradaUsuario.nextLine();
-                jugadoresEnJuego.add(new Jugador(nombre));
-                System.out.println();
+                 String nombre = entradaUsuario.nextLine();
+                 jugadoresEnJuego.add(new Jugador(nombre));
+                 System.out.println();
+                 if (numeroDeJugadores > 0 || numeroDeJugadores <= 4){
+                     break;
+                 }else {
+                     System.out.println("Solo se permiten de 1 a 4 jugadores.");
+                 }
              }
-            gameLoop();
+
+             gameLoop();
              break;
         }
 
@@ -58,8 +64,8 @@ public class BlackJack {
     // TODO: 9/8/2019 Generar Rondas en método independiente?
         while (!finished) {
             System.out.println("Ronda " + (++ronda));
-            System.out.println("La baraja tiene " + baraja.getCantidadDeCartas() + " cartas");
-            System.out.println("Cantidad de jugadores " + jugadoresEnJuego.size());
+            System.out.println("La baraja tiene: " + baraja.getCantidadDeCartas() + " cartas");
+            System.out.println("Cantidad de jugadores: " + jugadoresEnJuego.size());
             System.out.println();
 
             decidirSiTomarCarta(croupier);
